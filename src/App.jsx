@@ -7,14 +7,16 @@ import SearchResults from './pages/SearchResults'
 
 function App() {
   return (
-    <div className="bg-black min-h-screen text-white">
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: '#0f0f0f', color: 'white' }}>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Feed />} />
-        <Route path="/video/:id" element={<VideoCardDetails />} />
-        <Route path="/channel/:id" element={<ChannelDetails />} />
-        <Route path="/search/:query" element={<SearchResults />} />
-      </Routes>
+      <div style={{ flex: 1, overflow: 'hidden', display: 'flex' }}>
+        <Routes>
+          <Route path="/" element={<Feed />} />
+          <Route path="/video/:id" element={<VideoCardDetails />} />
+          <Route path="/channel/:id" element={<ChannelDetails />} />
+          <Route path="/search/:query" element={<SearchResults />} />
+        </Routes>
+      </div>
     </div>
   )
 }
