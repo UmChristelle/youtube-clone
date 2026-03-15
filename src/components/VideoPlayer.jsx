@@ -1,32 +1,31 @@
-import { useRef, useState } from 'react';
-import ReactPlayer from 'react-player';
+import { useRef, useState } from 'react'
 
 const VideoPlayer = ({ videoId }) => {
-  const [isFullScreen, setIsFullScreen] = useState(false);
-  const containerRef = useRef(null);
+  const containerRef = useRef(null)
+  const [isFullScreen, setIsFullScreen] = useState(false)
 
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
-      containerRef.current.requestFullscreen();
-      setIsFullScreen(true);
+      containerRef.current.requestFullscreen()
+      setIsFullScreen(true)
     } else {
-      document.exitFullscreen();
-      setIsFullScreen(false);
+      document.exitFullscreen()
+      setIsFullScreen(false)
     }
-  };
+  }
 
   return (
     <div
       ref={containerRef}
       className="relative w-full aspect-video rounded-xl overflow-hidden bg-black"
     >
-      <ReactPlayer
-        url={`https://www.youtube.com/watch?v=${videoId}`}
-        controls
-        playing
-        width="100%"
-        height="100%"
-        className="absolute top-0 left-0"
+      <iframe
+        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0`}
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+        allowFullScreen
+        className="absolute top-0 left-0 w-full h-full"
+        style={{ border: 'none' }}
       />
       <button
         onClick={toggleFullScreen}
@@ -35,7 +34,7 @@ const VideoPlayer = ({ videoId }) => {
         {isFullScreen ? '⛶ Exit' : '⛶ Fullscreen'}
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default VideoPlayer;
+export default VideoPlayer

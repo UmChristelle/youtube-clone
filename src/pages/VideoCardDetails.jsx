@@ -16,7 +16,7 @@ const VideoCardDetails = () => {
 
   const { data: relatedData, isLoading: loadingRelated } = useQuery({
     queryKey: ['related', id],
-    queryFn: () => fetchFromAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`),
+    queryFn: () => fetchFromAPI(`search?part=snippet&q=${snippet?.title}&type=video&maxResults=20`),
     staleTime: 1000 * 60 * 5,
   })
 
